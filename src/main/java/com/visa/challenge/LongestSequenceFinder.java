@@ -25,7 +25,7 @@ import java.util.Map;
  *    
  *    Complexity :
  *       Time Complexity of this solution is O(N^2)
- *       Reduced the complexity due to recursive path finding by adding memorization. 
+ *       Reduced the exponential complexity due to recursive path finding with the help of memorization. 
  *       Only one pass will happen for a cell to find possible longest path and it will get stored  and reused.
  *       
  *      TODO Add more test cases,Consider moving diagonally   
