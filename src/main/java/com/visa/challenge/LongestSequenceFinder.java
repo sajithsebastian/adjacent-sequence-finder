@@ -34,7 +34,7 @@ import java.util.Map;
  */	
 class LongestSequenceFinder {
 	// Function to check if cell (i, j) is a valid cell or not
-	public boolean isValid(char[][] face, int i, int j) {
+	private boolean isValid(char[][] face, int i, int j) {
 		return (i >= 0 && i < face.length && j >= 0 && j < face[0].length);
 	}
 
@@ -91,7 +91,7 @@ class LongestSequenceFinder {
 	}
 
 	// Find longest sequences for
-	public Map<String, String> findLongestSequanceOfArray(char[][] face, String faceColor) {
+	private Map<String, String> findLongestSequanceOfArray(char[][] face, String faceColor) {
 		Map<String, String> lookup = new HashMap<>();
 		Map<String, String> result = new HashMap<>();
 		String res = ""; // stores longest path found so far
@@ -125,6 +125,10 @@ class LongestSequenceFinder {
 	public Map<String, String> findRubikCubeLongestSequence(char[][] faceYellow, char[][] faceWhite, char[][] faceGreen,
 			char[][] faceOrange, char[][] faceBlue, char[][] faceRed) {
 
+		if(!isValidRubiksCube(faceYellow,faceWhite,faceGreen,faceOrange,faceBlue,faceRed)) {
+			return null; 
+		}
+		
 		Map<String, String> longestResults = new HashMap<>();
 		longestResults.putAll(findLongestSequanceOfArray(faceYellow, "YELLOW"));
 		longestResults.putAll(findLongestSequanceOfArray(faceWhite, "WHITE"));
@@ -135,9 +139,21 @@ class LongestSequenceFinder {
 
 		return getLongestResults(longestResults);
 	}
-
+	
+	//Validate Rubik's cube input
+	private boolean isValidRubiksCube(char[][] faceYellow, char[][] faceWhite, char[][] faceGreen,
+			char[][] faceOrange, char[][] faceBlue, char[][] faceRed) {
+		if(faceYellow ==null || faceWhite==null ||faceGreen == null ||faceOrange==null ||faceBlue==null ||faceRed==null) {
+			System.out.println("Invalid cube defenition");
+			return false; 
+		}
+		//TODOD add more validations 
+		
+		return true;
+	}
+	
 	// Consolidate longest result from all faces
-	public Map<String, String> getLongestResults(Map<String, String> clubbedResults) {
+	private Map<String, String> getLongestResults(Map<String, String> clubbedResults) {
 		Map<String, String> result = new HashMap<>();
 		String longPath = "";
 		for (String key : clubbedResults.keySet()) {

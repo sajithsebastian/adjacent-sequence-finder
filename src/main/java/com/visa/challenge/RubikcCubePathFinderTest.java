@@ -5,13 +5,47 @@ import java.util.Map;
 public class RubikcCubePathFinderTest {
 	
 	public static void main(String[] args) {
-		System.out.println("testSameDataOn4Faces ");
-		testSameDataOn4Faces();
-		System.out.println("testMultipleLongPathOnSingleFace ");
-		testMultipleLongPathOnSingleFace();
+//		System.out.println("testInvalidRubikCubeFace ");
+//		testInvalidRubikCubeFace();		
+//		System.out.println("testSameDataOn4Faces ");
+//		testSameDataOn4Faces();
+//		System.out.println("testMultipleLongPathOnSingleFace ");
+//		testMultipleLongPathOnSingleFace();
 		System.out.println("testOneLongPathAcrossFaces ");
 		testOneLongPathAcrossFaces();
 	}
+	
+	// Test Invalid Rubik's Cube Face 
+	public static void testInvalidRubikCubeFace() {
+		LongestSequenceFinder rcPathFinder = new LongestSequenceFinder();
+		char faceRed[][] = null;
+		
+		char faceWhite[][] = {{ 'A', 'B', 'C', 'D', 'E', 'Z' }, 
+							  { 'J', 'I', 'V', 'W', 'X', 'Y' },
+							  { 'N', 'B', 'M', 'N', 'O', 'A' } };
+		
+		char faceYellow[][] = {{ 'A', 'B', 'C', 'D', 'E', 'Z' }, 
+							   { 'J', 'I', 'V', 'W', 'X', 'Y' },
+							   { 'N', 'B', 'M', 'N', 'O', 'A' } };
+		
+		char faceBlue[][] = {{ 'A', 'B', 'C', 'D', 'E', 'Z' }, 
+							 { 'J', 'I', 'V', 'W', 'X', 'Y' },
+							 { 'N', 'B', 'M', 'N', 'O', 'A' } };
+		
+		char faceOrange[][] = {{ 'A', 'B', 'C' },
+							   { 'J', 'I', 'H' },
+							   { 'K', 'L', 'O' } };
+		
+		char faceGreen[][] = {{ 'D', 'E', 'A' },
+							  { 'G', 'F', 'A' },
+							  { 'N', 'O', 'A' } };
+
+		Map<String, String> longestResults = rcPathFinder.findRubikCubeLongestSequence(faceYellow, faceWhite, faceGreen, faceOrange,
+				faceBlue, faceRed);
+		
+		longestResults.keySet().stream()
+			.forEach(key -> System.out.println("Start Position=" + key +" Path=" + longestResults.get(key)));
+	}	
 	
 	// Test Rubiks cube with same arrangement on long faces single long path
 	public static void testOneLongPathAcrossFaces() {
@@ -42,9 +76,9 @@ public class RubikcCubePathFinderTest {
 
 		Map<String, String> longestResults = rcPathFinder.findRubikCubeLongestSequence(faceYellow, faceWhite, faceGreen, faceOrange,
 				faceBlue, faceRed);
-
+		
 		longestResults.keySet().stream()
-			.forEach(key -> System.out.println("Satrt Position=" + key +" Path=" + longestResults.get(key)));
+			.forEach(key -> System.out.println("Start Position=" + key +" Path=" + longestResults.get(key)));
 	}	
 	
 	// Test Rubiks cube with same arrangement on long faces more than 1 result from a face
@@ -78,7 +112,7 @@ public class RubikcCubePathFinderTest {
 					faceBlue, faceRed);
 
 			longestResults.keySet().stream()
-				.forEach(key -> System.out.println("Satrt Position=" + key + " " + longestResults.get(key)));
+				.forEach(key -> System.out.println("Start Position=" + key + " " + longestResults.get(key)));
 		}
 
 	// Test Rubiks cube with same arrangement on 4 longer sides
@@ -112,7 +146,7 @@ public class RubikcCubePathFinderTest {
 				faceBlue, faceRed);
 
 		longestResults.keySet().stream()
-				.forEach(key -> System.out.println("Satrt Position=" + key + " " + longestResults.get(key)));
+				.forEach(key -> System.out.println("Start Position=" + key + " " + longestResults.get(key)));
 	}
 
 }
